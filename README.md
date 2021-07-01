@@ -1,4 +1,4 @@
-# Plain Old Data Object
+# Plain Old Data Mate
 Will become a source code generator for simple C++ pods.
 
 Planned features are comparison operators (neccessary for pre C++20),
