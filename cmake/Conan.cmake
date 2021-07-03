@@ -18,7 +18,6 @@ macro(run_conan)
     ${CONAN_EXTRA_REQUIRES}
     catch2/2.11.0
     docopt.cpp/0.6.2
-    nlohmann_json/3.9.1
     OPTIONS
     ${CONAN_EXTRA_OPTIONS}
     BASIC_SETUP

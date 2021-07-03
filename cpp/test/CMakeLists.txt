@@ -12,6 +12,7 @@ target_link_libraries(catch_main PRIVATE project_options)
 add_executable(
     unittests
     test_expected.cpp
+    test_convert_command_line_arguments.cpp
 )
 
 target_link_libraries(
@@ -19,6 +20,7 @@ target_link_libraries(
     PRIVATE
         catch_main
         project_options
+        podmateLib
 )
 
 #add_test(unittests unittests)
