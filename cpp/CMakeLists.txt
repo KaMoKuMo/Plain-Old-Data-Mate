@@ -4,6 +4,7 @@ add_library(
     podmateLib
     src/convert_command_line_arguments.cpp
     src/input_parameter.cpp
+    src/parse_cpp_file.cpp
 )
 
 target_include_directories(
