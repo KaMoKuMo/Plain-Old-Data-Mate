@@ -1,7 +1,10 @@
 #pragma once
 
-#include "expected.h"
 #include "struct_snippets.h"
+#include "expected.h"
+
+#include <vector>
 
 Expected<std::vector<StructSnippets>, std::string>
-parseCppFile(std::string const&);
+collectStructs(std::string const& cppFileContent);
+

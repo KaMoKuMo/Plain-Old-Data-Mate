@@ -9,11 +9,11 @@
  * \return if the file exists, can be read und the content is cpp conformant, the neccessary Information is collected,
  *         else a description with the problem is yielded.
  **/
-Expected<std::vector<PlainOldDataObjectData>, std::string>
+Expected<std::vector<StructSnippets>, std::string>
 parseCppFile(std::string const& fileName) {
-    auto expectedContent = readFileContent(fileName);
+    auto expectedContent = readFileContent(fileName);
     if (!expectedContent)
-        return std::move(expectedContent).error();
+        return Unexpected(std::move(expectedContent).error());
 
     //auto expectedNamespaces = collectNamespaces(*expectedContent);
     //if (!expectedNamespaces)
@@ -26,5 +26,5 @@ parseCppFile(std::string const& fileName) {
     //return mergeInformation(*expectedNamespaces, *expectedStructs);
     //
 
-    return std::vector<PlainOldDataObjectData>{};
+    return std::vector<StructSnippets>{};
 }

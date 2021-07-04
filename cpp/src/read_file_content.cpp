@@ -1,5 +1,7 @@
 
 #include "read_file_content.h"
+#include <fstream>
+#include <sstream>
 /**
  * Tries to read the content of a file into a std::string
  *
@@ -8,7 +10,7 @@
  *         else description what went wrong
  **/
 Expected<std::string, std::string>
-readFileContent(std::string const& fileName) {
+readFileContent(std::string const& fileName) {
     std::ifstream f(fileName);
     if (!f.is_open()) {
         return Unexpected("error while opening file " + fileName);
