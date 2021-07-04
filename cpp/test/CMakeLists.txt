@@ -15,6 +15,7 @@ add_executable(
     test_convert_command_line_arguments.cpp
     test_extract_struct_snippets.cpp
     test_partition_into_struct_strings.cpp
+    test_write_equal_operator.cpp
 )
 
 target_link_libraries(

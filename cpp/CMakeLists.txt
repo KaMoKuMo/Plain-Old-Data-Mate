@@ -14,6 +14,17 @@ add_library(
     src/file_parsing/details/partition_into_struct_strings.cpp
     src/file_parsing/details/read_file_content.cpp
     src/file_parsing/details/find_inner_scope.cpp
+
+    #source code generation module
+
+    src/source_code_generation/function.cpp
+    src/source_code_generation/line_fragment.cpp
+    src/source_code_generation/variable_declaration.cpp
+    src/source_code_generation/line_statement.cpp
+    src/source_code_generation/source_code_line.cpp
+    src/source_code_generation/write_equal_operator.cpp
+    src/source_code_generation/source_code.cpp
+    src/source_code_generation/body.cpp
 )
 
 target_include_directories(
