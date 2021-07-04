@@ -5,12 +5,12 @@
 
 TEST_CASE("ConvertCommandLineArguments", "[unittest]") {
     GIVEN("three input arguments") {
-        int const argc = 4;
-        char const* argv[] = {"Programmaufruf", "input", "header", "source"};
+        int const argc = 6;
+        char const* argv[] = {"Programmaufruf", "input", "header", "source", "headerPreamble", "sourcePreamble"};
         WHEN("convertCommandLineArguments is called") {
             auto const result = convertCommandLineArguments(argc, argv);
             THEN("a set of InputParameter is returned") {
-                REQUIRE(InputParameter{"input", "header", "source"} == result);
+                REQUIRE(InputParameter{"input", OutputFileParameters{"header", "source", "headerPreamble", "sourcePreamble"}} == result);
             }
         }
     }

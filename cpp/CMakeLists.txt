@@ -4,6 +4,7 @@ add_library(
     podmateLib
     src/convert_command_line_arguments.cpp
     src/input_parameter.cpp
+    src/output_file_parameters.cpp
 
     #the parsing module
     src/file_parsing/parse_cpp_file.cpp
@@ -17,6 +18,7 @@ add_library(
 
     #source code generation module
 
+    src/source_code_generation/write_source_files.cpp
     src/source_code_generation/function.cpp
     src/source_code_generation/line_fragment.cpp
     src/source_code_generation/variable_declaration.cpp

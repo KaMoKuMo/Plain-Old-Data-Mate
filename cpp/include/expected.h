@@ -1,7 +1,8 @@
 #pragma once
 
-#include <iostream>
 #include <exception>
+#include <iostream>
+#include <optional>
 #include <type_traits>
 #include <variant>
 
@@ -75,6 +76,18 @@ public:
 
 private:
     E error_; //!< saved error
+};
+
+template<>
+class BadExpectedAccess<void> : public std::exception {
+public:
+    //! saves the error
+    explicit BadExpectedAccess() = default;
+
+    //! yields the reason for the throw
+    virtual const char* what() const noexcept override {
+        return "Bad Expected access";
+    }
 };
 
 /**
@@ -223,8 +236,91 @@ private:
 };
 
 /**
- * Convinient partial specialization for defacto Expected of this project
+ * Partial specialization for the Expected<T, E> to allow T == void.
+ * Since no value is contained member functions for retrieving or accessing the
+ * value are omitted.
  **/
-template<typename Value>
-using ExpectedOrMessage = Expected<Value, std::string>;
+template<typename E>
+class [[nodiscard]] Expected<void, E> {
+public:
+    //! the expected value type
+    using value_type = void;
+    //! the unexpected type
+    using error_type = E;
+
+    /**
+     * Copies the data from the \see Unexpected object.
+     * Constructed with this c'tor the expected will yield false when asked
+     * about expected value.
+     */
+    template<typename TError, std::enable_if_t< std::is_constructible_v<error_type, TError const&>, int > = 0>
+    constexpr Expected(Unexpected<TError> const& rE)
+        : data_(rE.error())
+    {
+    }
+
+    /**
+     * Moves the data from the \see Unexpected object.
+     * Constructed with this c'tor the expected will yield false when asked
+     * about expected value.
+     */
+    template<typename TError, std::enable_if_t<std::is_constructible_v<error_type, TError&&>, int> = 0>
+    constexpr Expected(Unexpected<TError> && rE)
+        : data_(std::move(std::move(rE).error()))
+    {
+    }
+
+    /**
+     * The default initialized expected is treated as the expected outcome.
+     **/
+    constexpr Expected() = default;
+
+    //! true if the expected value is stored
+    explicit operator bool() const noexcept{
+        return !data_;
+    }
+
+    //! yields read access to the stored unexpected value, or throws if the expected value is contained
+    constexpr E const& error() const& noexcept(false) {
+        if (*this)
+            throw BadExpectedAccess<void>();
+        return *data_;
+    }
+    //! yields read and write access to the stored unexpected value, or throws if the expected value is contained
+    constexpr E & error() & noexcept(false) {
+        if (*this)
+            throw BadExpectedAccess<void>();
+        return *data_;
+    }
+    //! yields the stored unexpected value as read only, or throws if the expected value is contained
+    constexpr E const&& error() const&& noexcept(false) {
+        if (*this)
+            throw BadExpectedAccess<void>();
+        return std::move(*data_);
+    }
+    //! yields the stored unexpected value, or throws if the expected value is contained
+    constexpr E && error() && noexcept(false) {
+        if (*this)
+            throw BadExpectedAccess<void>();
+        return std::move(*data_);
+    }
+
+    //! compares the state and the contained values
+    friend constexpr bool operator==(Expected const& lhs, Expected const& rhs) {
+        return lhs.data_ == rhs.data_;
+    }
+
+    //! streams the state and the corresponding value in a json format
+    friend std::ostream& operator<<(std::ostream& o, Expected<value_type, error_type> const& expectedValue) {
+        o << "{";
+        if (expectedValue) {
+            o << "\"expected value\" : void";
+        } else {
+            o << "\"unexpected value\" : " << expectedValue.error();
+        }
+        return o << "}";
+    }
+private:
+    std::optional<error_type> data_; //!< data storage
+};
 

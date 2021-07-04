@@ -2,17 +2,10 @@
 
 #include <tuple>
 
-//! Helpermethod for the comparison operators 
-auto tieData(InputParameter const& parameter) {
-    return std::tie(parameter.inputFileName,
-                    parameter.outputHeaderFileName,
-                    parameter.outputSourceFileName);
-}
-
 //! Compares every member of \see InputParameter
 bool
 operator==(InputParameter const& lhs, InputParameter const& rhs) {
-    return tieData(lhs) == tieData(rhs);
+    return lhs.inputFileName == rhs.inputFileName && lhs.outputData == rhs.outputData;
 }
 
 //! Compares every member of \see InputParameter
@@ -26,7 +19,6 @@ std::ostream&
 operator<<(std::ostream& o, InputParameter const& parameter) {
     return o << "{"
              << "\"input-file-name\" : \"" << parameter.inputFileName
-             << "\", \"output-header-file-name\" : \"" << parameter.outputHeaderFileName
-             << "\", \"output-source-file-name\" : \"" << parameter.outputSourceFileName
+             << "\", \"output-parameter\" : \"" << parameter.outputData
              << "\"}";
 }

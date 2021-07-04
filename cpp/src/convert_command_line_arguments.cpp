@@ -8,13 +8,13 @@
  * converts the command line arguments into \see InputParameter.
  * If the conversion is not possible an \see Unexpected Message is returned
  **/
-ExpectedOrMessage<InputParameter>
+Expected<InputParameter, std::string>
 convertCommandLineArguments(int argc, char const* argv[])
 {
     static constexpr auto commandlineUsage =
       R"(podmate 0.1
         Usage:
-              podmate <input-file> <output-header-file> <output-source-file>
+              podmate <input-file> <output-header-file> <output-source-file> <output-header-preamble> <output-source-preamble>
               podmate (-h | --help)
               podmate --version
         Options:
@@ -28,11 +28,17 @@ convertCommandLineArguments(int argc, char const* argv[])
         std::string const inputFileName="<input-file>";
         std::string const outputHeaderFile="<output-header-file>";
         std::string const outputSourceFile="<output-source-file>";
+        std::string const outputHeaderPreamble = "<output-header-preamble>";
+        std::string const outputSourcePreamble = "<output-source-preamble>";
         
         return InputParameter{
             args[inputFileName].asString(),
-            args[outputHeaderFile].asString(),
-            args[outputSourceFile].asString()
+            OutputFileParameters{
+                args[outputHeaderFile].asString(),
+                args[outputSourceFile].asString(),
+                args[outputHeaderPreamble].asString(),
+                args[outputSourcePreamble].asString()
+            }
         };
     } catch (docopt::DocoptLanguageError const& exception) {
         return Unexpected(std::string("sorry, this shouldn't have happend. Please consider to report this bug"));
