@@ -1,7 +1,7 @@
-#include "source_code_generation/write_equal_operator.h"
+#include "source_code_generation/details/write_equal_operator.h"
 
-#include "source_code_generation/variable_declaration.h"
-#include "source_code_generation/line_statement.h"
+#include "source_code_generation/details/variable_declaration.h"
+#include "source_code_generation/details/line_statement.h"
 
 
 /**

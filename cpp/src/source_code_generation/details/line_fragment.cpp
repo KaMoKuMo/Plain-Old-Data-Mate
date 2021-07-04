@@ -1,4 +1,4 @@
-#include "source_code_generation/line_fragment.h"
+#include "source_code_generation/details/line_fragment.h"
 
 
 LineFragment::LineFragment(std::string initalData)

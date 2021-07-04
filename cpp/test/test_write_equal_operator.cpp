@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include "source_code_generation/write_equal_operator.h"
+#include "source_code_generation/details/write_equal_operator.h"
 #include "file_parsing/struct_snippets.h"
 
 TEST_CASE("writeEqualOperator - single member struct", "[SourceCodeGeneration]") {

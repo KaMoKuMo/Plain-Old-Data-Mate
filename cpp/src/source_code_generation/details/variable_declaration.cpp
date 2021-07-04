@@ -1,5 +1,5 @@
-#include "source_code_generation/variable_declaration.h"
-#include "source_code_generation/line_fragment.h"
+#include "source_code_generation/details/variable_declaration.h"
+#include "source_code_generation/details/line_fragment.h"
 
 VariableDeclaration::VariableDeclaration(std::string type, std::string name)
     : _type(type)

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #run the usual build script
-./build.sh || return $?
+./build.sh || exit $?
 
 #generate the source files
-./Debug/bin/podmate ./sample/sample_structs.h ./sample/sample_structs_operators.h ./sample/sample_structs_operators.cpp "#include \"sample_structs.h\"" "#include \"sample_structs_operators.h\"" || return $?
+./Debug/bin/podmate ./sample/sample_structs.h ./sample/sample_structs_operators.h ./sample/sample_structs_operators.cpp "#include \"sample_structs.h\"" "#include \"sample_structs_operators.h\"" || exit $?
 
 
 #checking the generated source code; the success should become visible on the commandline

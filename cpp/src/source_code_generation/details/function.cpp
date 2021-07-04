@@ -1,6 +1,6 @@
-#include "source_code_generation/function.h"
-#include "source_code_generation/line_fragment.h"
-#include "source_code_generation/line_statement.h"
+#include "source_code_generation/details/function.h"
+#include "source_code_generation/details/line_fragment.h"
+#include "source_code_generation/details/line_statement.h"
 
 #include <sstream>
 

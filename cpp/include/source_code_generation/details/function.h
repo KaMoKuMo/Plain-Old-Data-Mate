@@ -4,9 +4,9 @@
  * @{
  */
 
-#include "source_code_generation/source_code.h"
-#include "source_code_generation/variable_declaration.h"
-#include "source_code_generation/body.h"
+#include "source_code_generation/details/source_code.h"
+#include "source_code_generation/details/variable_declaration.h"
+#include "source_code_generation/details/body.h"
 
 #include <optional>
 #include <memory>

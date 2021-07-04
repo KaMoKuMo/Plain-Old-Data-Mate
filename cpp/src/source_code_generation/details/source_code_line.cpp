@@ -1,4 +1,4 @@
-#include "source_code_generation/source_code_line.h"
+#include "source_code_generation/details/source_code_line.h"
 
 
 SourceCodeLine::SourceCodeLine(std::string initalData)

@@ -5,7 +5,7 @@
  */
 
 #include "source_code.h"
-#include "source_code_generation/line_fragment.h"
+#include "source_code_generation/details/line_fragment.h"
 
 /**
  * Models a single line of source code

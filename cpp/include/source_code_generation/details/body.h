@@ -4,7 +4,7 @@
  * @{
  */
 
-#include "source_code_generation/source_code.h"
+#include "source_code_generation/details/source_code.h"
 #include <memory>
 
 /**

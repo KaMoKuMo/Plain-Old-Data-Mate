@@ -1,7 +1,7 @@
 
 #the source code is packaged as a library to enable unit-tests
 add_library(
-    podmateLib
+    podmateLib STATIC
     src/convert_command_line_arguments.cpp
     src/input_parameter.cpp
     src/output_file_parameters.cpp
@@ -17,16 +17,15 @@ add_library(
     src/file_parsing/details/find_inner_scope.cpp
 
     #source code generation module
-
     src/source_code_generation/write_source_files.cpp
-    src/source_code_generation/function.cpp
-    src/source_code_generation/line_fragment.cpp
-    src/source_code_generation/variable_declaration.cpp
-    src/source_code_generation/line_statement.cpp
-    src/source_code_generation/source_code_line.cpp
-    src/source_code_generation/write_equal_operator.cpp
-    src/source_code_generation/source_code.cpp
-    src/source_code_generation/body.cpp
+    src/source_code_generation/details/function.cpp
+    src/source_code_generation/details/line_fragment.cpp
+    src/source_code_generation/details/variable_declaration.cpp
+    src/source_code_generation/details/line_statement.cpp
+    src/source_code_generation/details/source_code_line.cpp
+    src/source_code_generation/details/write_equal_operator.cpp
+    src/source_code_generation/details/source_code.cpp
+    src/source_code_generation/details/body.cpp
 )
 
 target_include_directories(

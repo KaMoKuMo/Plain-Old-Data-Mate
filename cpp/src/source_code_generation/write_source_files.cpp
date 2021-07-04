@@ -1,6 +1,6 @@
 #include "source_code_generation/write_source_files.h"
-#include "source_code_generation/function.h"
-#include "source_code_generation/write_equal_operator.h"
+#include "source_code_generation/details/function.h"
+#include "source_code_generation/details/write_equal_operator.h"
 
 
 #include <fstream>

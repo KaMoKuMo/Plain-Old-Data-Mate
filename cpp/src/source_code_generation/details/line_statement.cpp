@@ -1,4 +1,4 @@
-#include "source_code_generation/line_statement.h"
+#include "source_code_generation/details/line_statement.h"
 
 
 LineStatement::LineStatement(std::string initialData)

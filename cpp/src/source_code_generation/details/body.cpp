@@ -1,5 +1,5 @@
-#include "source_code_generation/body.h"
-#include "source_code_generation/line_fragment.h"
+#include "source_code_generation/details/body.h"
+#include "source_code_generation/details/line_fragment.h"
 
 Body::Body(std::unique_ptr<SourceCode> body)
     :_body(std::move(body))
