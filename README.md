@@ -1,8 +1,16 @@
 # Plain Old Data Mate
-Will become a source code generator for simple C++ pods.
+Is a prototyp of a source code generator for simple C++ pods.
 
-Planned features are comparison operators (neccessary for pre C++20),
-the left shift operator for streams, and maybe glue code for json (de)serialization.
+## Roadmap
+- [x] generate operator==
+- [] generate operator!=
+- [] generate operator<<(std::ostream&, ..)
+- [] generate json serialization
+- [] generate json deserialization glue code for e.g. simdjson
 
 ## Build
 To build the project execute the bash.sh script.
+
+## Examples
+To see how the podmate app can be used, see the semi automated integration test
+within build_and_run_sample.sh
