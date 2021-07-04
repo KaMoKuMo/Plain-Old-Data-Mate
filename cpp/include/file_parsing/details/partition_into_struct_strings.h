@@ -1,5 +1,9 @@
 #pragma once
 
+/** \addtogroup file_parsing
+ * @{
+ */
+
 #include "expected.h"
 #include "struct_name_with_content.h"
 
@@ -8,3 +12,5 @@
 Expected<std::vector<StructNameWithContent>, std::string>
 partitionIntoStructStrings(std::string const& cppFileContent);
 
+
+/** *@}*/

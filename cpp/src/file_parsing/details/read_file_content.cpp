@@ -1,5 +1,5 @@
 
-#include "read_file_content.h"
+#include "file_parsing/details/read_file_content.h"
 #include <fstream>
 #include <sstream>
 /**

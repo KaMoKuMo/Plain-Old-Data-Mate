@@ -1,6 +1,6 @@
-#include "collect_structs.h"
-#include "extract_struct_snippets.h"
-#include "partition_into_struct_strings.h"
+#include "file_parsing/details/collect_structs.h"
+#include "file_parsing/details/extract_struct_snippets.h"
+#include "file_parsing/details/partition_into_struct_strings.h"
 
 /**
  * Reads the content of a cpp file and extracts the neccessary information

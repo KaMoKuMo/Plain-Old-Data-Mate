@@ -1,5 +1,5 @@
 
-#include "find_inner_scope.h"
+#include "file_parsing/details/find_inner_scope.h"
 
 /**
  * Given a string and an offset, the next content of the scope is marked.

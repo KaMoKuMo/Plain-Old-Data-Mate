@@ -4,7 +4,7 @@
  */
 
 #include "convert_command_line_arguments.h"
-#include "parse_cpp_file.h"
+#include "file_parsing/parse_cpp_file.h"
 #include <iostream>
 
 int main(int argc, char const* argv[]) {

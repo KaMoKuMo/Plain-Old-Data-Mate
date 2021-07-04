@@ -1,8 +1,8 @@
 
-#include "partition_into_struct_strings.h"
+#include "file_parsing/details/partition_into_struct_strings.h"
 
-#include "find_inner_scope.h"
-#include "trim.h"
+#include "file_parsing/details/find_inner_scope.h"
+#include "file_parsing/details/trim.h"
 
 /**
  * Partitions a cpp file content into a vector of struct strings.

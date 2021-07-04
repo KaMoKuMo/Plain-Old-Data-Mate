@@ -1,8 +1,8 @@
 #include <catch2/catch.hpp>
 
-#include "extract_struct_snippets.h"
+#include "file_parsing/details/extract_struct_snippets.h"
 
-TEST_CASE("extractStructSnippets - most simple input", "[extractStructSnippets]") {
+TEST_CASE("extractStructSnippets - most simple input", "[file_parsing]") {
     GIVEN("A struct definition with two members and a name") {
         auto const input = StructNameWithContent{"arbitraryName" , "int first;\n double second;\n"};
         WHEN("extractStructSnippets is called") {
@@ -22,7 +22,7 @@ TEST_CASE("extractStructSnippets - most simple input", "[extractStructSnippets]"
         }
     }
 }
-TEST_CASE("extractStructSnippets - edge cases", "[extractStructSnippets]") {
+TEST_CASE("extractStructSnippets - edge cases", "[file_parsing]") {
     GIVEN("A struct definition with two inline documented members") {
         auto const input = StructNameWithContent{"", "int first; //!< firstMember\n double second; //<! secondMember\n"};
         WHEN("extractStructSnippets is called") {

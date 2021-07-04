@@ -1,5 +1,9 @@
 #pragma once
 
+/** \addtogroup file_parsing
+ * @{
+ */
+
 #include "whitespaces.h"
 #include <string>
 
@@ -23,3 +27,5 @@ inline std::string
 trim(std::string const& str) {
     return ltrim(rtrim(str));
 }
+
+/** *@}*/

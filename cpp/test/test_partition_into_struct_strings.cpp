@@ -1,10 +1,10 @@
 
 #include <catch2/catch.hpp>
 
-#include "partition_into_struct_strings.h"
+#include "file_parsing/details/partition_into_struct_strings.h"
 
 
-TEST_CASE("partitionIntoStructStrings - with no structs", "[partitionIntoStructStrings]") {
+TEST_CASE("partitionIntoStructStrings - with no structs", "[file_parsing]") {
     GIVEN("A content string without a struct") {
         auto const input = "arbitrary Content";
         WHEN("partitionIntoStructStrings is called") {
@@ -18,7 +18,7 @@ TEST_CASE("partitionIntoStructStrings - with no structs", "[partitionIntoStructS
         }
     }
 }
-TEST_CASE("partitionIntoStructStrings - with two structs", "[partitionIntoStructStrings]") {
+TEST_CASE("partitionIntoStructStrings - with two structs", "[file_parsing]") {
     GIVEN("A content string with two structs") {
         auto const input = "struct foo{ };\n struct bah {int i;};\n";
         WHEN("partitionIntoStructStrings is called") {

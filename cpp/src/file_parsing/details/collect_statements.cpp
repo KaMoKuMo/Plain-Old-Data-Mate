@@ -1,6 +1,6 @@
 
-#include "collect_statements.h"
-#include "trim.h"
+#include "file_parsing/details/collect_statements.h"
+#include "file_parsing/details/trim.h"
 
 /**
  * Collects statements within a struct scope

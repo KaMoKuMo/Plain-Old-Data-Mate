@@ -1,7 +1,7 @@
-#include "extract_struct_snippets.h"
+#include "file_parsing/details/extract_struct_snippets.h"
 
-#include "collect_statements.h"
-#include "extract_member_name.h"
+#include "file_parsing/details/collect_statements.h"
+#include "file_parsing/details/extract_member_name.h"
 
 
 /**
