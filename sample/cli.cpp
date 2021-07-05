@@ -22,8 +22,9 @@ checkEqualOperator() {
     T copy = sample;
 
     bool const copiesAreEqual = sample == copy;
+    bool const copiesAreNotUnequal = !(sample != copy);
     alter(sample);
-    return copiesAreEqual && !(copy == sample);
+    return copiesAreEqual && copiesAreNotUnequal && (copy != sample) && !(copy == sample);
 }
 
 /**

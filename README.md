@@ -3,7 +3,7 @@ Is a prototyp of a source code generator for simple C++ pods.
 
 ## Roadmap
 - [x] generate operator==
-- [] generate operator!=
+- [x] generate operator!=
 - [] generate operator<<(std::ostream&, ..)
 - [] generate json serialization
 - [] generate json deserialization glue code for e.g. simdjson
