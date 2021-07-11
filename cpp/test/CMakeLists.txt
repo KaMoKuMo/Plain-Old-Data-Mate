@@ -11,7 +11,9 @@ target_link_libraries(catch_main PRIVATE project_options)
 
 add_executable(
     unittests
+    constexpr_test_expected_invoke.cpp
     test_expected.cpp
+    test_expected_invoke.cpp
     test_convert_command_line_arguments.cpp
     test_extract_struct_snippets.cpp
     test_partition_into_struct_strings.cpp

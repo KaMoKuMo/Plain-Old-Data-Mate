@@ -3,7 +3,7 @@
 #include "../include/expected.h"
 #include "copy_move_tracer.h"
 
-TEST_CASE("Construction", "[Expected]") {
+TEST_CASE("Expected - Construction", "[core]") {
     GIVEN("Some Unexpected") {
         using IntTracer = CopyMoveTracer<int>;
         //nicht const wegen damit ein r-value daraus gemacht werden kann
@@ -29,7 +29,7 @@ TEST_CASE("Construction", "[Expected]") {
     }
 }
 
-TEST_CASE("Extracting Values", "[Expected]") {
+TEST_CASE("Expected - Extracting Values", "[core]") {
     GIVEN("Some Expected storing some expected input value") {
         int const input = 42;
         auto expected = Expected<int, std::string>(input);

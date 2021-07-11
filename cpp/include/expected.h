@@ -324,3 +324,18 @@ private:
     std::optional<error_type> data_; //!< data storage
 };
 
+//type trait to deduce whether a template parameter is of some "expected type"
+template<typename, typename = void>
+struct is_expected : std::false_type{};
+
+template<typename T, typename E>
+struct is_expected<Expected<T, E>> : std::true_type{};
+
+template<typename T, typename E>
+struct is_expected<Expected<T, E> const> : std::true_type{};
+
+template<typename T, typename E>
+struct is_expected<Expected<T, E> volatile> : std::true_type{};
+
+template<typename T>
+static constexpr bool is_expected_v = is_expected<T>::value;
