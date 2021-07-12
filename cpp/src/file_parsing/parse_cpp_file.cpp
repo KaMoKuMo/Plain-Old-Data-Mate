@@ -1,4 +1,5 @@
 
+#include "expected_invoke.h"
 #include "file_parsing/parse_cpp_file.h"
 #include "file_parsing/details/read_file_content.h"
 #include "file_parsing/details/collect_structs.h"
@@ -13,9 +14,5 @@
  **/
 Expected<std::vector<StructSnippets>, std::string>
 parseCppFile(std::string const& fileName) {
-    auto expectedContent = readFileContent(fileName);
-    if (!expectedContent)
-        return Unexpected(std::move(expectedContent).error());
-
-    return  collectStructs(*std::move(expectedContent));
+    return expected_invoke(collectStructs, readFileContent(fileName));
 }
