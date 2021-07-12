@@ -16,6 +16,7 @@
 struct StructSnippets {
     std::string name; //<! name of the struct
     std::vector<std::string> memberNames; //<! found member names
+    std::vector<std::string> namespaces; //<! surrounding namespaces. The first one being the outtermost namespace
 };
 
 /** @} */

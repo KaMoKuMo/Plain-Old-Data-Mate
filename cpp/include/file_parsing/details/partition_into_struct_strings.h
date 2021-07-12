@@ -5,11 +5,11 @@
  */
 
 #include "expected.h"
-#include "struct_name_with_content.h"
+#include "structs_raw_data.h"
 
 #include <vector>
 
-Expected<std::vector<StructNameWithContent>, std::string>
+Expected<std::vector<StructsRawData>, std::string>
 partitionIntoStructStrings(std::string const& cppFileContent);
 
 

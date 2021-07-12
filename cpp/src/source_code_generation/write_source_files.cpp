@@ -1,7 +1,6 @@
 #include "source_code_generation/write_source_files.h"
 #include "source_code_generation/details/function.h"
-#include "source_code_generation/details/write_equal_operator.h"
-#include "source_code_generation/details/write_unequal_operator.h"
+#include "source_code_generation/details/generate_source_code.h"
 
 
 #include <fstream>
@@ -36,25 +35,20 @@ writeSourceFiles(OutputParameter const& parameter) {
     }
 
     //1. Translate the struct informations into actual Function objects to write the files
-    std::vector<Function> functionDefinitions;
-    functionDefinitions.reserve(parameter.structSnippets.size() * 2);
-    for (auto const& snippets : parameter.structSnippets) {
-        functionDefinitions.emplace_back(writeEqualOperator(snippets));
-        functionDefinitions.emplace_back(writeUnequalOperator(snippets));
-    }
+    auto [headerFileCode, sourceFileCode] = generateSourceCode(parameter.structSnippets);
+    if (!headerFileCode)
+        return Unexpected(std::string("header source code couldn't be generated"));
+    if (!sourceFileCode)
+        return Unexpected(std::string("cpp source code couldn't be generated"));
 
     //2. actual writing of the header file
     headerFileStream << "#pragma once\n";
     headerFileStream << parameter.outputFileData.headerPreamble << '\n';
-    for (auto const& definition : functionDefinitions) {
-        headerFileStream << definition.asDeclaration();
-    }
+    headerFileStream << *headerFileCode;
 
     //3. actual writing of the source file
     sourceFileStream << parameter.outputFileData.sourcePreamble << '\n';
-    for (auto const& definition : functionDefinitions) {
-        sourceFileStream << definition;
-    }
+    sourceFileStream << *sourceFileCode;
 
     return {};
 }

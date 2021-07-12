@@ -20,11 +20,22 @@ TEST_CASE("partitionIntoStructStrings - with no structs", "[file_parsing]") {
 }
 TEST_CASE("partitionIntoStructStrings - with two structs", "[file_parsing]") {
     GIVEN("A content string with two structs") {
-        auto const input = "struct foo{ };\n struct bah {int i;};\n";
+        std::string const input = "struct foo{ };\n struct bah {int i;};\n";
         WHEN("partitionIntoStructStrings is called") {
             auto const result = partitionIntoStructStrings(input);
             THEN("two structs could be retrived") {
                 REQUIRE(result->size() == 2);
+            }
+            THEN("the offset of the first corresponds to the start position of the first \"struct\"") {
+                size_t secondNameStartPosition = input.find("struct");
+                REQUIRE(secondNameStartPosition != std::string::npos);
+                REQUIRE(secondNameStartPosition == result->front().offset);
+            }
+            THEN("the offset of the second corresponds to the start position of the second \"struct\"") {
+                size_t secondNameStartPosition = input.find("struct");
+                secondNameStartPosition = input.find("struct", secondNameStartPosition + 1);
+                REQUIRE(secondNameStartPosition != std::string::npos);
+                REQUIRE(secondNameStartPosition == result->back().offset);
             }
         }
     }

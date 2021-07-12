@@ -2,12 +2,14 @@
 
 #include "sample_structs.h"
 
-void
-alter(IntWrapper& wrapper) {
-    wrapper.i  -= 1;
-}
+namespace OutterNamespace::InnerNamespace {
+    void
+    alter(IntWrapper& wrapper) {
+        wrapper.i  -= 1;
+    }
 
-void
-alter(Compound& compound) {
-    compound.floatingNumber += 3.21;
+    void
+    alter(Compound& compound) {
+        compound.floatingNumber += 3.21;
+    }
 }

@@ -15,7 +15,7 @@ struct StructsRawData {
 
     /**
      * starting position of the struct within the file.
-     * Not the absolute, but the relative Position regarding namespaces ranges is important.
+     * Not the absolute, but the relative Position regarding namespace ranges is important.
      **/
     size_t offset;
 };

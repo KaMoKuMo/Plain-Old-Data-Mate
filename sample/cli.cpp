@@ -44,6 +44,7 @@ checkEqualOperators() {
  * when unsuccessful this function returns "1";
  **/
 int main() {
+    using namespace OutterNamespace::InnerNamespace;
     if (!checkEqualOperators<IntWrapper, Compound>()) {
         std::cout << "Equal operator seems wrong!\n";
         return 1;

@@ -1,4 +1,5 @@
 #include "file_parsing/details/collect_structs.h"
+#include "file_parsing/details/collect_namespaces.h"
 #include "file_parsing/details/extract_struct_snippets.h"
 #include "file_parsing/details/partition_into_struct_strings.h"
 
@@ -17,16 +18,22 @@ collectStructs(std::string const& cppFileContent) {
         return Unexpected(std::move(expectedStructs).error());
     }
 
+    auto expectedNamespaces = collectNamespaces(cppFileContent);
+    if (!expectedNamespaces) {
+        return Unexpected(std::move(expectedNamespaces).error());
+    }
+
     std::vector<StructSnippets> result;
     result.reserve(expectedStructs->size());
 
     for (auto const& structString : *expectedStructs) {
-        if (auto expectedInformation = extractStructSnippets(structString)) {
+        if (auto expectedInformation = extractStructSnippets(structString, *expectedNamespaces)) {
             result.emplace_back(*(std::move(expectedInformation)));
         } else {
             return Unexpected(std::move(expectedInformation).error());
         }
     }
+
     return result;
 
 }

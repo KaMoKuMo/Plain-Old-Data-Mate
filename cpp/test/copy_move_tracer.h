@@ -72,7 +72,7 @@ public:
     //!  liefert den move c'tor Zähler
     static uint32_t moveCtor() { return c_counter[_moveCtor]; }
     //!  liefert den copy assignment Zähler
-    static uint32_t copyAssigment() { return c_counter[_copyAssignment]; }
+    static uint32_t copyAssignment() { return c_counter[_copyAssignment]; }
     //!  liefert den move assignment Zähler
     static uint32_t moveAssigment() { return c_counter[_moveAssignment]; }
 

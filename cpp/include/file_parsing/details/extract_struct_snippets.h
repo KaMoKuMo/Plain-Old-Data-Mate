@@ -6,9 +6,10 @@
 
 #include "expected.h"
 #include "file_parsing/struct_snippets.h"
-#include "file_parsing/details/struct_name_with_content.h"
+#include "file_parsing/details/namespace_data.h"
+#include "file_parsing/details/structs_raw_data.h"
 
 Expected<StructSnippets, std::string>
-extractStructSnippets(StructNameWithContent const&);
+extractStructSnippets(StructsRawData const&, std::vector<NamespaceData>&);
 
 /** *@}*/

@@ -14,6 +14,7 @@ add_executable(
     constexpr_test_expected_invoke.cpp
     test_expected.cpp
     test_expected_invoke.cpp
+    test_collect_structs.cpp
     test_convert_command_line_arguments.cpp
     test_extract_struct_snippets.cpp
     test_partition_into_struct_strings.cpp
