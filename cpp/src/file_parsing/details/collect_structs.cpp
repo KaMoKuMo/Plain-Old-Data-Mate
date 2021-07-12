@@ -15,11 +15,11 @@
  **/
 Expected<std::vector<StructSnippets>, std::string>
 collectStructs(std::string const& cppFileContent) {
-    auto mergeStructInformation = [](std::vector<StructsRawData> const& structData,
-                                     std::vector<NamespaceData>& namespaceData) -> Expected<std::vector<StructSnippets>, std::string> {
+    auto mergeStructInformation = [](std::vector<StructsRawData> const& structData,
+                                     std::vector<NamespaceData>& namespaceData) -> Expected<std::vector<StructSnippets>, std::string> {
         std::vector<StructSnippets> result;
-        result.reserve(expectedStructs->size());
-        for (auto const& structString : structData {
+        result.reserve(structData.size());
+        for (auto const& structString : structData ) {
             if (auto expectedInformation = extractStructSnippets(structString, namespaceData)) {
                 result.emplace_back(*(std::move(expectedInformation)));
             } else {
@@ -29,9 +29,9 @@ collectStructs(std::string const& cppFileContent) {
         return result;
     };
 
+    auto expectedStructData = partitionIntoStructStrings(cppFileContent);
+    auto expectedNamespaceData = collectNamespaces(cppFileContent);
     return expected_invoke(mergeStructInformation,
-                           partitionIntoStructStrings(cppFileContent),
-                           collectNamespaces(cppFileContent));
-
-
+                           expectedStructData,
+                           expectedNamespaceData);
 }

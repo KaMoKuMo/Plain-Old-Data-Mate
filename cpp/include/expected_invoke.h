@@ -53,7 +53,7 @@
  **/
 template<typename Function,
          typename ...Args,
-         typename FunctionReturnType = std::invoke_result_t<Function, expected_value_type_t<Args>...>,
+         typename FunctionReturnType = decltype(callUnpacked(std::declval<Function>(), std::declval<Args&&>()...)),
          typename InputArgumentErrorType = expected_error_type_t<Args...>,
          typename ReturnType = std::conditional_t<is_expected_v<FunctionReturnType>,
                                                      FunctionReturnType,

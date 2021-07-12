@@ -1,11 +1,4 @@
 
-//! type trait to deduce the contained value type of the passed in Expected type. If the type is not an Expected type -> the type is the type itself
-template<typename T, typename = void> struct expected_value_type { using type = T; }; //if it isn't any expected -> return the type itself
-template<typename T, typename E> struct expected_value_type<Expected<T, E>> { using type = T; };
-template<typename T, typename E> struct expected_value_type<Expected<T, E> const> { using type = T; };
-template<typename T, typename E> struct expected_value_type<Expected<T, E> volatile> { using type = T; };
-template<typename T> using expected_value_type_t = typename expected_value_type<std::remove_reference_t<T>>::type;
-
 //! type trait to deduce the contained error type. If the type is not an Expected type, the type is void (the only not allowed error type)
 template<typename T, typename = void> struct expected_single_error_type { using type = void; }; //the only type not allowed as an error -> not an expected
 template<typename T, typename E> struct expected_single_error_type<Expected<T, E>> { using type = E; };
@@ -38,7 +31,7 @@ constexpr auto extractError() { return ErrorType{}; }
 //! Tries to find the Expected containing an error and returning it.
 template<typename ErrorType, typename T, typename ...Ts>
 constexpr auto extractError(T&& t, Ts&& ...ts) {
-    if constexpr (is_expected_v<T>) {
+    if constexpr (is_expected_v<std::remove_reference_t<T>>) {
         if (!t) {
             return std::move(t).error();
         }
@@ -55,7 +48,7 @@ auto callUnpacked(Function f) {
 template<typename Function, typename T, typename ...Ts>
 auto callUnpacked(Function f, T&& t, Ts&& ...ts) {
     auto withNextCaputured = [&]() {
-        if constexpr (is_expected_v<T>) {
+        if constexpr (is_expected_v<std::remove_reference_t<T>>) {
             return [&](auto&& ...otherArgs) { return f(*std::forward<T>(t), std::forward<decltype(otherArgs)>(otherArgs)...); };
         } else {
             return [&](auto&& ...otherArgs) { return f(std::forward<T>(t), std::forward<decltype(otherArgs)>(otherArgs)...); };
