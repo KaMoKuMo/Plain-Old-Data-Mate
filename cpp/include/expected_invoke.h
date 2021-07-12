@@ -3,6 +3,10 @@
 #include "expected.h"
 #include "expected_invoke_helper.h"
 
+/** \addtogroup core
+ * @{
+ */
+
 /**
  * Helper function to reduce error-checking logic.
  * This function first checks whether some expected argument contains
@@ -66,4 +70,5 @@ expected_invoke(Function f, Args&& ...args) {
         return callUnpacked(f, std::forward<Args>(args)...);
     }
 }
+/** @} */
 

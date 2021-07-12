@@ -6,6 +6,10 @@
 #include <type_traits>
 #include <variant>
 
+/** \addtogroup core
+ * @{
+ */
+
 /**
  * \class Unexpected
  *
@@ -339,3 +343,5 @@ struct is_expected<Expected<T, E> volatile> : std::true_type{};
 
 template<typename T>
 static constexpr bool is_expected_v = is_expected<T>::value;
+
+/** @} */

@@ -1,5 +1,8 @@
 # Plain Old Data Mate
 Is a prototyp of a source code generator for simple C++ pods.
+The envisioned usage of the tool is to generate source code
+for simple structs as a seperate build-step.
+To ease the scripting process errors are returned via cout with the reason of failure.
 
 ## Roadmap
 - [x] generate operator==
