@@ -33,6 +33,7 @@ add_library(
     src/source_code_generation/details/variable_declaration.cpp
     src/source_code_generation/details/write_comparison_operator.cpp
     src/source_code_generation/details/write_equal_operator.cpp
+    src/source_code_generation/details/write_left_shift_operator.cpp
     src/source_code_generation/details/write_unequal_operator.cpp
 )
 

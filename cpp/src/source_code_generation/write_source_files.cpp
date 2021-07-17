@@ -43,6 +43,7 @@ writeSourceFiles(OutputParameter const& parameter) {
 
     //2. actual writing of the header file
     headerFileStream << "#pragma once\n";
+    headerFileStream << "#include <iostream>\n";
     headerFileStream << parameter.outputFileData.headerPreamble << '\n';
     headerFileStream << *headerFileCode;
 

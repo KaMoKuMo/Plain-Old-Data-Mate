@@ -4,12 +4,11 @@ The envisioned usage of the tool is to generate source code
 for simple structs as a seperate build-step.
 To ease the scripting process errors are returned via cout with the reason of failure.
 
-## Roadmap
+## Roadmap for Alpha
 - [x] generate operator==
 - [x] generate operator!=
 - [x] generate the code within the namespace of the structs
-- [] generate operator<<(std::ostream&, ..)
-- [] generate json serialization
+- [x] generate operator<<(std::ostream&, ..)
 - [] generate json deserialization glue code for e.g. simdjson
 
 ## Build

@@ -3,6 +3,7 @@
 #include "source_code_generation/details/namespace.h"
 #include "source_code_generation/details/source_code_collection.h"
 #include "source_code_generation/details/split_into_namespace_groups.h"
+#include "source_code_generation/details/write_left_shift_operator.h"
 #include "source_code_generation/details/write_equal_operator.h"
 #include "source_code_generation/details/write_unequal_operator.h"
 
@@ -32,6 +33,7 @@ generateSourceCode(std::vector<StructSnippets> snippets) {
         for (auto const& structSnippets : groupedSnippets) {
             functions.emplace_back(writeEqualOperator(structSnippets));
             functions.emplace_back(writeUnequalOperator(structSnippets));
+            functions.emplace_back(writeLeftShiftOperator(structSnippets));
         }
 
         auto headerCollection = std::make_unique<SourceCodeCollection>();
