@@ -9,13 +9,13 @@ TEST_CASE("extractStructSnippets - most simple input", "[file_parsing]") {
         WHEN("extractStructSnippets is called") {
             auto const result = extractStructSnippets(input, noNamespaces);
             THEN("two member names are returned") {
-                REQUIRE(result->memberNames.size() == 2);
+                REQUIRE(result->member.size() == 2);
             }
             THEN("the first member name matches") {
-                REQUIRE(result->memberNames.front() == "first");
+                REQUIRE(result->member.front().name == "first");
             }
             THEN("the second member name matches") {
-                REQUIRE(result->memberNames.back() == "second");
+                REQUIRE(result->member.back().name == "second");
             }
             THEN("the name of the struct matches") {
                 REQUIRE(result->name == "arbitraryName");
@@ -30,9 +30,9 @@ TEST_CASE("extractStructSnippets - edge cases", "[file_parsing]") {
         WHEN("extractStructSnippets is called") {
             auto const result = extractStructSnippets(input, noNamespaces);
             THEN("Neither member name contains any comment") {
-                REQUIRE(result->memberNames.front() == "first");
-                REQUIRE(result->memberNames.back() == "second");
-                REQUIRE(result->memberNames.size() == 2);
+                REQUIRE(result->member.front().name == "first");
+                REQUIRE(result->member.back().name == "second");
+                REQUIRE(result->member.size() == 2);
             }
         }
     }
@@ -41,9 +41,9 @@ TEST_CASE("extractStructSnippets - edge cases", "[file_parsing]") {
         WHEN("extractStructSnippets is called") {
             auto const result = extractStructSnippets(input, noNamespaces);
             THEN("The documentation is ignored") {
-                REQUIRE(result->memberNames.size() == 2);
-                REQUIRE(result->memberNames.front() == "first");
-                REQUIRE(result->memberNames.back() == "second");
+                REQUIRE(result->member.size() == 2);
+                REQUIRE(result->member.front().name == "first");
+                REQUIRE(result->member.back().name == "second");
             }
         }
     }
@@ -52,9 +52,9 @@ TEST_CASE("extractStructSnippets - edge cases", "[file_parsing]") {
         WHEN("extractStructSnippets is called") {
             auto const result = extractStructSnippets(input, noNamespaces);
             THEN("the whitespaces are trimmed away") {
-                REQUIRE(result->memberNames.size() == 2);
-                REQUIRE(result->memberNames.front() == "first");
-                REQUIRE(result->memberNames.back() == "second");
+                REQUIRE(result->member.size() == 2);
+                REQUIRE(result->member.front().name == "first");
+                REQUIRE(result->member.back().name == "second");
             }
         }
     }

@@ -14,10 +14,13 @@ TEST_CASE("collectStructs - Happy Path", "[file_parsing]") {
                 REQUIRE(result->front().name == "Data");
             }
             THEN("the struct has one member") {
-                REQUIRE(result->front().memberNames.size() == 1);
+                REQUIRE(result->front().member.size() == 1);
             }
             THEN("the one member name is retrived") {
-                REQUIRE(result->front().memberNames.front() == "i");
+                REQUIRE(result->front().member.front().name == "i");
+            }
+            THEN("the one member type is retrived") {
+                REQUIRE(result->front().member.front().type == "int");
             }
             THEN("the struct is embedded within one namespace") {
                 REQUIRE(result->front().namespaces.size() == 1);

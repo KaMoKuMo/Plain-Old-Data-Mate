@@ -12,7 +12,7 @@ add_library(
     src/file_parsing/details/collect_namespaces.cpp
     src/file_parsing/details/collect_statements.cpp
     src/file_parsing/details/collect_structs.cpp
-    src/file_parsing/details/extract_member_name.cpp
+    src/file_parsing/details/extract_member_snippet.cpp
     src/file_parsing/details/extract_struct_snippets.cpp
     src/file_parsing/details/find_inner_scope.cpp
     src/file_parsing/details/partition_into_struct_strings.cpp
@@ -33,6 +33,7 @@ add_library(
     src/source_code_generation/details/variable_declaration.cpp
     src/source_code_generation/details/write_comparison_operator.cpp
     src/source_code_generation/details/write_equal_operator.cpp
+    src/source_code_generation/details/write_from_json.cpp
     src/source_code_generation/details/write_left_shift_operator.cpp
     src/source_code_generation/details/write_unequal_operator.cpp
 )

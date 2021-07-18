@@ -4,6 +4,8 @@
 #include "alter.h"
 #include "to_string.h"
 
+#include "simdjson.h"
+
 #include <sstream>
 
 /**
@@ -58,6 +60,32 @@ checkStreamOperator() {
     return true;
 }
 
+template<typename T>
+bool
+roundTrip() {
+    T sample;
+    fill(sample);
+    std::stringstream stream;
+    stream << sample;
+    std::string const outputData = stream.str();
+    simdjson::dom::parser parser;
+    simdjson::padded_string json = simdjson::padded_string(outputData);
+    simdjson::dom::element doc = parser.parse(json);
+    T output;
+    try {
+        fromJson(doc, output);
+        if (sample != output) {
+            throw std::logic_error(std::string(typeid(sample).name()) + " can not complete a roundtrip");
+        }
+    } catch (std::exception const& exception) {
+        std::cout<<exception.what();
+        std::cout<<outputData<<'\n';
+        return false;
+    }
+
+    return true;
+}
+
 
 /**
  * simple wrapper to check the equal operator for an arbitrary number of types
@@ -66,7 +94,8 @@ template<typename ...Ts>
 bool
 checkOperators() {
     return (checkEqualOperator<Ts>() && ...)
-        && (checkStreamOperator<Ts>() && ...);
+        && (checkStreamOperator<Ts>() && ...)
+        && (roundTrip<Ts>() && ...);
 }
 
 /**

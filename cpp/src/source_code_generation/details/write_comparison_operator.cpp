@@ -16,9 +16,9 @@ writeComparisonOperator(StructSnippets const& structData,
     std::vector<std::string> memberComparisions;
     std::string const lhs("lhs");
     std::string const rhs("rhs");
-    memberComparisions.reserve(structData.memberNames.size());
-    for (auto const& memberName : structData.memberNames) {
-        memberComparisions.emplace_back(lhs + '.' + memberName + " " + comparison + " "  + rhs + '.' + memberName);
+    memberComparisions.reserve(structData.member.size());
+    for (auto const& member : structData.member) {
+        memberComparisions.emplace_back(lhs + '.' + member.name + " " + comparison + " "  + rhs + '.' + member.name);
     }
     std::string aggregatedComparison("return ");
 

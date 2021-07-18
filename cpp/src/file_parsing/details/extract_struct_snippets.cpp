@@ -2,7 +2,7 @@
 
 #include "file_parsing/details/calculate_surrounding_namespaces.h"
 #include "file_parsing/details/collect_statements.h"
-#include "file_parsing/details/extract_member_name.h"
+#include "file_parsing/details/extract_member_snippet.h"
 
 
 /**
@@ -17,10 +17,10 @@ extractStructSnippets(StructsRawData const& nameWithContent,
                       std::vector<NamespaceData>& namespaces) {
     auto statements = collectStatements(nameWithContent.content);
 
-    std::vector<std::string> memberNames;
+    std::vector<MemberSnippet> memberNames;
     memberNames.reserve(statements.size());
     for (auto const& statement : statements) {
-        if (auto expectedMemberName = extractMemberName(statement)) {
+        if (auto expectedMemberName = extractMemberSnippet(statement)) {
             memberNames.emplace_back(*(std::move(expectedMemberName)));
         } else {
             return Unexpected(std::move(expectedMemberName).error());

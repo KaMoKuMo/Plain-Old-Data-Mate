@@ -5,7 +5,7 @@
 
 TEST_CASE("writeEqualOperator - single member struct", "[SourceCodeGeneration]") {
     GIVEN("A Struct Snippet of a struct with a single member") {
-        auto const input = StructSnippets{"foo", {"member"}};
+        auto const input = StructSnippets{"foo", {{"", "member"}}};
         WHEN("writeEqualOperator is called") {
             auto result = writeEqualOperator(input);
             THEN("the function definition matches") {

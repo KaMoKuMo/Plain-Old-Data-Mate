@@ -33,8 +33,8 @@ writeLeftShiftOperator(StructSnippets const& structData) {
     body->add(std::move(firstLine));
     bool isFirstLine = true;
 
-    for (auto const& member : structData.memberNames) {
-        body->add(writeMemberStream(member, isFirstLine));
+    for (auto const& member : structData.member) {
+        body->add(writeMemberStream(member.name, isFirstLine));
         isFirstLine = false;
     }
 

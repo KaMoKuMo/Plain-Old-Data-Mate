@@ -15,3 +15,4 @@ LLVM_PROFILE_FILE="unittests.profraw" ./bin/unittests
 llvm-profdata-10 merge -sparse unittests.profraw -o unittests.profdata
 llvm-cov-10 show ./bin/unittests -instr-profile=unittests.profdata
 llvm-cov-10 report ./bin/unittests -instr-profile=unittests.profdata
+

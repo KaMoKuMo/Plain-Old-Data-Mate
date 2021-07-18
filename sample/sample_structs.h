@@ -7,7 +7,7 @@ namespace FakeNamespace {
 namespace OutterNamespace {
     namespace InnerNamespace {
         struct IntWrapper {
-            int i;
+            int64_t i;
         };
 
         struct Compound {
