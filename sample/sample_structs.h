@@ -1,9 +1,10 @@
 #pragma once
 
+#include <string>
+
 namespace FakeNamespace {
 
 }
-
 namespace OutterNamespace {
     namespace InnerNamespace {
         struct IntWrapper {
@@ -13,6 +14,7 @@ namespace OutterNamespace {
         struct Compound {
             IntWrapper wrapper;
             double floatingNumber;
+            std::string text;
         };
     }
 }

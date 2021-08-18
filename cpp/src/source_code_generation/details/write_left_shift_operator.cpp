@@ -10,7 +10,7 @@
 Function
 writeLeftShiftOperator(StructSnippets const& structData) {
     std::string variableName = "instance";
-    auto writeMemberStream = [&](std::string const& memberName, bool isFirstLine) {
+    auto writeMemberStream = [&](MemberSnippet const& member, bool isFirstLine) {
         auto line = std::make_unique<SourceCodeLine>();
         line->append("<< \"");
         if (!isFirstLine)
@@ -18,9 +18,19 @@ writeLeftShiftOperator(StructSnippets const& structData) {
         else
             line->append(" \\\"");
 
-        line->append(memberName);
-        line->append("\\\" : \" << ");
-        line->append(variableName + '.' + memberName);
+        line->append(member.name);
+
+        if (member.type == "std::string") {
+            line->append("\\\" : \\\"\" << ");
+        }
+        else {
+            line->append("\\\" : \" << ");
+        }
+        line->append(variableName + '.' + member.name);
+        if (member.type == "std::string") {
+            line->append(" << \"\\\"\"");
+        }
+
         return line;
     };
 
@@ -34,7 +44,7 @@ writeLeftShiftOperator(StructSnippets const& structData) {
     bool isFirstLine = true;
 
     for (auto const& member : structData.member) {
-        body->add(writeMemberStream(member.name, isFirstLine));
+        body->add(writeMemberStream(member, isFirstLine));
         isFirstLine = false;
     }
 

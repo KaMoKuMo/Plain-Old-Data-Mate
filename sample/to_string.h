@@ -22,6 +22,13 @@ namespace OutterNamespace::InnerNamespace {
 
     inline std::string
     toString(Compound const& compound) {
-        return std::string("{ \"wrapper\" : " + toString(compound.wrapper) + ", \"floatingNumber\" : " + toStringThroughStream(compound.floatingNumber) + " }");
+        return std::string(
+            "{ \"wrapper\" : "
+           + toString(compound.wrapper)
+           + ", \"floatingNumber\" : "
+           + toStringThroughStream(compound.floatingNumber)
+           + ", \"text\" : \""
+           + compound.text
+           + "\" }");
     }
 }

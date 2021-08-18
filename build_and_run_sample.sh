@@ -23,6 +23,6 @@ cd sample
 #run the sample application which will generate some sample data and compare the instances
 ./Debug/cli
 
-#run unconditionally the cleanup to ensure proper testing (the next time)
+##run unconditionally the cleanup to ensure proper testing (the next time)
 cleanup
 rm -rf Debug

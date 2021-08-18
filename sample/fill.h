@@ -13,6 +13,7 @@ inline void
 fill(Compound& compound) {
     compound.wrapper.i = 52;
     compound.floatingNumber = -21.23;
+    compound.text = "sample";
 }
 
 }
