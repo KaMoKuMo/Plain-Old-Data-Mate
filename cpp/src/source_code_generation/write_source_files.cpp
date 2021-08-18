@@ -35,7 +35,11 @@ writeSourceFiles(OutputParameter const& parameter) {
     }
 
     //1. Translate the struct informations into actual Function objects to write the files
-    auto [headerFileCode, sourceFileCode] = generateSourceCode(parameter.structSnippets);
+    auto result = generateSourceCode(parameter.structSnippets);
+    if (!result)
+        return Unexpected(std::move(result).error());
+
+    auto [headerFileCode, sourceFileCode] = *std::move(result);
     if (!headerFileCode)
         return Unexpected(std::string("header source code couldn't be generated"));
     if (!sourceFileCode)

@@ -14,7 +14,7 @@ struct GeneratedSources {
     std::unique_ptr<SourceCode> sourceCode;
 };
 
-GeneratedSources
+Expected<GeneratedSources, std::string>
 generateSourceCode(std::vector<StructSnippets>);
 
 /** @} */

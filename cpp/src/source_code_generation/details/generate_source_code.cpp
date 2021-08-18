@@ -10,7 +10,7 @@
 
 #include <numeric>
 
-GeneratedSources
+Expected<GeneratedSources, std::string>
 generateSourceCode(std::vector<StructSnippets> snippets) {
     auto namespaceGroupedSnippets = splitIntoNamespaceGroups(snippets);
 
@@ -35,7 +35,12 @@ generateSourceCode(std::vector<StructSnippets> snippets) {
             functions.emplace_back(writeEqualOperator(structSnippets));
             functions.emplace_back(writeUnequalOperator(structSnippets));
             functions.emplace_back(writeLeftShiftOperator(structSnippets));
-            functions.emplace_back(writeFromJson(structSnippets));
+            auto result = writeFromJson(structSnippets);
+            if (result) {
+                functions.emplace_back(*std::move(result));
+            } else {
+                return Unexpected(std::move(result).error());
+            }
         }
 
         auto headerCollection = std::make_unique<SourceCodeCollection>();
@@ -48,5 +53,5 @@ generateSourceCode(std::vector<StructSnippets> snippets) {
         header->add(embedIntoNamespaces(groupedSnippets.front().namespaces, std::move(headerCollection)));
         source->add(embedIntoNamespaces(groupedSnippets.front().namespaces, std::move(sourceCollection)));
     }
-    return {std::move(header), std::move(source)};
+    return GeneratedSources{std::move(header), std::move(source)};
 }

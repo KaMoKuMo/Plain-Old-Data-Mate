@@ -10,7 +10,7 @@ To ease the scripting process errors are returned via cout with the reason of fa
 - [x] generate the code within the namespace of the structs
 - [x] generate operator<<(std::ostream&, ..)
 - [x] generate json deserialization glue code for simdjson
-- [] add warnings for not supported fundamental types for the simdjson framework
+- [x] add error for not supported fundamental types for the simdjson framework
 - [] add support for json deserialization/serialization for std container types (optional, variant, vector)
 - [] add support for custom json-key usage
 - [] add support for configuration file instead of command line arguments

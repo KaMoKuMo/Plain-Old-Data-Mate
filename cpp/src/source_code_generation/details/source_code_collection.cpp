@@ -10,7 +10,7 @@ SourceCodeCollection::add(std::unique_ptr<SourceCode> sourceCode) {
 
 std::ostream&
 SourceCodeCollection::write(std::ostream& o, size_t indentationLevel) const {
-    for (auto const& sourceCode : _collection) {
+    for (auto const& sourceCode : _collection) {
         sourceCode->write(o, indentationLevel);
     }
     return o;
