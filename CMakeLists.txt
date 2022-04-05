@@ -5,6 +5,8 @@ project(PlainOldDataMate LANGUAGES CXX VERSION 0.1)
 include(cmake/StandardProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Link this 'library' to set the c++ standard / compile-time options requested
 add_library(project_options INTERFACE)
 target_compile_features(project_options INTERFACE cxx_std_17)
@@ -16,11 +18,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
   endif()
 endif()
 
-# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
-add_library(project_warnings INTERFACE)
-
 # enable cache system
 include(cmake/Cache.cmake)
+
+# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
+add_library(project_warnings INTERFACE)
 
 # standard compiler warnings
 include(cmake/CompilerWarnings.cmake)
